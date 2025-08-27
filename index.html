@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mock Test Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #0074D9;
+    }
+    .question {
+      background: #fff;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #ccc;
+    }
+    .question b {
+      font-size: 1.1rem;
+    }
+    label {
+      display: block;
+      margin: 0.3rem 0;
+      cursor: pointer;
+    }
+    button {
+      background: #0074D9;
+      border: none;
+      padding: 0.7rem 2rem;
+      font-size: 1rem;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin: 1rem auto;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    #result {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #333;
+      padding: 1rem;
+      background: #dff0d8;
+      border: 1px solid #d0e9c6;
+      border-radius: 5px;
+      margin-top: 2rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mock Test</h1>
+  <div id="quiz-container"></div>
+  <button id="submit-btn">Submit Test</button>
+  <div id="result"></div>
+
+  <script>
+    const questions = [
+      {
+        question: "What is the capital of India?",
+        options: ["Delhi", "Mumbai", "Kolkata", "Chennai"],
+        answer: "Delhi"
+      },
+      {
+        question: "HTML stands for?",
+        options: [
+          "Hyper Trainer Marking Language",
+          "Hyper Text Markup Language",
+          "Hyper Text Marketing Language",
+          "Hyper Transfer Mark Language"
+        ],
+        answer: "Hyper Text Markup Language"
+      },
+      {
+        question: "Which language is used for styling web pages?",
+        options: ["HTML", "JQuery", "CSS", "XML"],
+        answer: "CSS"
+      },
+      {
+        question: "Inside which HTML element do we put the JavaScript?",
+        options: ["<js>", "<javascript>", "<script>", "<scripting>"],
+        answer: "<script>"
+      },
+      {
+        question: "Which symbol is used for comments in JavaScript?",
+        options: ["//", "/* */", "<!-- -->", "#"],
+        answer: "//"
+      }
+    ];
+
+    const quizContainer = document.getElementById('quiz-container');
+    const submitBtn = document.getElementById('submit-btn');
+    const resultDiv = document.getElementById('result');
+
+    function loadQuiz() {
+      quizContainer.innerHTML = '';
+      questions.forEach((q, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.classList.add('question');
+        let optionsHTML = '';
+        q.options.forEach(option => {
+          optionsHTML += `
+            <label>
+              <input type="radio" name="question${index}" value="${option}" /> ${option}
+            </label>
+          `;
+        });
+        questionDiv.innerHTML = `<b>${index + 1}. ${q.question}</b>${optionsHTML}`;
+        quizContainer.appendChild(questionDiv);
+      });
+    }
+
+    function getScore() {
+      let score = 0;
+      questions.forEach((q, index) => {
+        const selected = document.querySelector(`input[name="question${index}"]:checked`);
+        if (selected && selected.value === q.answer) {
+          score++;
+        }
+      });
+      return score;
+    }
+
+    submitBtn.addEventListener('click', () => {
+      const total = questions.length;
+      const score = getScore();
+      resultDiv.style.display = 'block';
+      resultDiv.textContent = `You scored ${score} out of ${total}!`;
+      if(score === total) {
+        resultDiv.style.background = "#d4edda";
+        resultDiv.style.borderColor = "#c3e6cb";
+        resultDiv.style.color = "#155724";
+      } else if (score >= total / 2) {
+        resultDiv.style.background = "#fff3cd";
+        resultDiv.style.borderColor = "#ffeeba";
+        resultDiv.style.color = "#856404";
+      } else {
+        resultDiv.style.background = "#f8d7da";
+        resultDiv.style.borderColor = "#f5c6cb";
+        resultDiv.style.color = "#721c24";
+      }
+    });
+
+    loadQuiz();
+  </script>
+</body>
+</html>
