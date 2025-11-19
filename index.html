@@ -2,161 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mock Test Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuicK ChaT - Privacy Policy</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f8f8;
-      margin: 0;
-      padding: 2rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    h1 {
-      text-align: center;
-      color: #0074D9;
-    }
-    .question {
-      background: #fff;
-      margin-bottom: 1.5rem;
-      padding: 1rem;
-      border-radius: 5px;
-      box-shadow: 0 0 5px #ccc;
-    }
-    .question b {
-      font-size: 1.1rem;
-    }
-    label {
-      display: block;
-      margin: 0.3rem 0;
-      cursor: pointer;
-    }
-    button {
-      background: #0074D9;
-      border: none;
-      padding: 0.7rem 2rem;
-      font-size: 1rem;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      display: block;
-      margin: 1rem auto;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-      transition: background 0.3s ease;
-    }
-    button:hover {
-      background: #005fa3;
-    }
-    #result {
-      text-align: center;
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: #333;
-      padding: 1rem;
-      background: #dff0d8;
-      border: 1px solid #d0e9c6;
-      border-radius: 5px;
-      margin-top: 2rem;
-      display: none;
-    }
+    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: auto; background: #f7f7f7; }
+    h1 { text-align: center; }
+    .container { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    a { color: #007bff; text-decoration: none; }
   </style>
 </head>
 <body>
-  <h1>Mock Test</h1>
-  <div id="quiz-container"></div>
-  <button id="submit-btn">Submit Test</button>
-  <div id="result"></div>
+  <div class="container">
+    <h1>Privacy Policy</h1>
 
-  <script>
-    const questions = [
-      {
-        question: "What is the capital of India?",
-        options: ["Delhi", "Mumbai", "Kolkata", "Chennai"],
-        answer: "Delhi"
-      },
-      {
-        question: "HTML stands for?",
-        options: [
-          "Hyper Trainer Marking Language",
-          "Hyper Text Markup Language",
-          "Hyper Text Marketing Language",
-          "Hyper Transfer Mark Language"
-        ],
-        answer: "Hyper Text Markup Language"
-      },
-      {
-        question: "Which language is used for styling web pages?",
-        options: ["HTML", "JQuery", "CSS", "XML"],
-        answer: "CSS"
-      },
-      {
-        question: "Inside which HTML element do we put the JavaScript?",
-        options: ["<js>", "<javascript>", "<script>", "<scripting>"],
-        answer: "<script>"
-      },
-      {
-        question: "Which symbol is used for comments in JavaScript?",
-        options: ["//", "/* */", "<!-- -->", "#"],
-        answer: "//"
-      }
-    ];
+    <p>This Privacy Policy describes how <strong>QuicK ChaT</strong> ("we", "our", or "Service") collects, uses, and protects the information you provide when using our social media chatting application.</p>
 
-    const quizContainer = document.getElementById('quiz-container');
-    const submitBtn = document.getElementById('submit-btn');
-    const resultDiv = document.getElementById('result');
+    <h2>Information We Collect</h2>
+    <p>We may collect personal information that you provide voluntarily, such as:</p>
+    <ul>
+      <li>Usernames or profile information</li>
+      <li>Messages sent within the app</li>
+      <li>Contact information (if you choose to share)</li>
+    </ul>
 
-    function loadQuiz() {
-      quizContainer.innerHTML = '';
-      questions.forEach((q, index) => {
-        const questionDiv = document.createElement('div');
-        questionDiv.classList.add('question');
-        let optionsHTML = '';
-        q.options.forEach(option => {
-          optionsHTML += `
-            <label>
-              <input type="radio" name="question${index}" value="${option}" /> ${option}
-            </label>
-          `;
-        });
-        questionDiv.innerHTML = `<b>${index + 1}. ${q.question}</b>${optionsHTML}`;
-        quizContainer.appendChild(questionDiv);
-      });
-    }
+    <h2>How We Use Your Information</h2>
+    <p>Your information is used to:</p>
+    <ul>
+      <li>Provide and improve the QuicK ChaT services</li>
+      <li>Enable messaging between users</li>
+      <li>Send updates or notifications (if enabled)</li>
+    </ul>
 
-    function getScore() {
-      let score = 0;
-      questions.forEach((q, index) => {
-        const selected = document.querySelector(`input[name="question${index}"]:checked`);
-        if (selected && selected.value === q.answer) {
-          score++;
-        }
-      });
-      return score;
-    }
+    <h2>Data Sharing & Third Parties</h2>
+    <p>We do not sell your personal information. However, the app uses third-party services such as Google Play Services which have their own privacy policies. Links to their policies can be accessed from their respective websites.</p>
 
-    submitBtn.addEventListener('click', () => {
-      const total = questions.length;
-      const score = getScore();
-      resultDiv.style.display = 'block';
-      resultDiv.textContent = `You scored ${score} out of ${total}!`;
-      if(score === total) {
-        resultDiv.style.background = "#d4edda";
-        resultDiv.style.borderColor = "#c3e6cb";
-        resultDiv.style.color = "#155724";
-      } else if (score >= total / 2) {
-        resultDiv.style.background = "#fff3cd";
-        resultDiv.style.borderColor = "#ffeeba";
-        resultDiv.style.color = "#856404";
-      } else {
-        resultDiv.style.background = "#f8d7da";
-        resultDiv.style.borderColor = "#f5c6cb";
-        resultDiv.style.color = "#721c24";
-      }
-    });
+    <h2>Data Security</h2>
+    <p>We take reasonable measures to protect your data. You are responsible for securing your device and avoiding actions such as rooting or jailbreaking, which can compromise security.</p>
 
-    loadQuiz();
-  </script>
+    <h2>Children's Privacy</h2>
+    <p>QuicK ChaT is not intended for children under 13. We do not knowingly collect data from children under 13.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. The latest version will always be posted on this page. By continuing to use the app, you accept the updated policy.</p>
+
+    <h2>Contact Us</h2>
+    <p>If you have questions about this Privacy Policy, please contact us at:<br />
+    📧 <a href="mailto:flashdc4178@gmail.com">flashdc4178@gmail.com</a></p>
+
+    <p><strong>Effective date: 2025-11-19</strong></p>
+  </div>
 </body>
 </html>
